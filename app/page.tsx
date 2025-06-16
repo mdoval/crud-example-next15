@@ -2,10 +2,10 @@ import { getClients } from "@/actions/db-actions";
 import AddButton from "@/components/AddButton";
 import MobileRow from "@/components/MobileRow";
 import MonitorRow from "@/components/MonitorRow";
-import { Client } from "@/types/ClientsType";
+import { Employee } from "@/types/EmployeeType";
 
 export default async function Home() {
-  const clients: Client[] = await getClients();
+  const employees: Employee[] = await getClients();
 
   return (
     <div>
@@ -18,15 +18,16 @@ export default async function Home() {
           <div>Edad</div>
           <div>Departamento</div>
           <div>Home Office?</div>
+          <div>Acciones</div>
         </div>
         <div className="md:hidden text-center p-4 bg-gray-300">Tabla</div>
       </div>
       <div>
-        {clients.map((cliente, index) => {
+        {employees.map((employee, index) => {
           return (
             <div key={index} >
-              <MobileRow cliente={cliente} />
-              <MonitorRow cliente={cliente} />
+              <MobileRow employee={employee} />
+              <MonitorRow employee={employee} />
             </div>
           );
         })}

@@ -1,11 +1,13 @@
 "use client";
 
-import { Client } from "@/types/ClientsType";
+import { Employee } from "@/types/EmployeeType";
 import { useState } from "react";
 import { CiCircleChevDown, CiCircleRemove } from "react-icons/ci";
 import { FaArrowAltCircleDown, FaArrowAltCircleUp } from "react-icons/fa";
+import DeleteButton from "./DeleteButton";
+import EditButton from "./EditButton";
 
-export default function MobileRow({ cliente }: { cliente: Client }) {
+export default function MobileRow({ employee }: { employee: Employee }) {
   const [expand, setExpand] = useState(true);
 
   function open() {
@@ -21,13 +23,14 @@ export default function MobileRow({ cliente }: { cliente: Client }) {
           :
           <FaArrowAltCircleDown className="mr-2" />
         }
-        {cliente.name} {cliente.lastName}
+        {employee.name} {employee.lastName}
       </div>
       <div className={`mobile-detail ${expand ? "hidden" : ""} p-3 bg-gray-100 shadow` }>
-        <div className="sm:hidden"><b>Email:</b> {cliente.email}</div>
-        <div className="sm:hidden"><b>Edad:</b> {cliente.age}</div>
-        <div className="sm:hidden"><b>Departamento:</b> {cliente.department}</div>
-        <div className="sm:hidden"><div className="flex flex-row items-center space-x-4"><b>Home Office?</b> {cliente.homeOffice? <CiCircleChevDown className="text-green-600 font-bold text-2xl" />: <CiCircleRemove className="text-red-600 font-bold text-2xl" />}</div></div>
+        <div className="sm:hidden"><b>Email:</b> {employee.email}</div>
+        <div className="sm:hidden"><b>Edad:</b> {employee.age}</div>
+        <div className="sm:hidden"><b>Departamento:</b> {employee.department}</div>
+        <div className="sm:hidden"><div className="flex flex-row items-center space-x-4"><b>Home Office?</b> {employee.homeOffice? <CiCircleChevDown className="text-green-600 font-bold text-2xl" />: <CiCircleRemove className="text-red-600 font-bold text-2xl" />}</div></div>
+        <div className="space-x-4 sm:hidden flex flex-row justify-end"><DeleteButton id={employee.id} /><EditButton id={employee.id} /></div>
       </div>
     </div>
   );
